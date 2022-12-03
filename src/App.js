@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
-
+import SideBar from './Components/LeftSection';
+import DashBoard from './Components/DashBoard';
+import Flex from './Components/Flex';
+import Login from './Components/Login';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  let data = {
+    earning : "40,000",
+    annual : "2,40,000",
+    task : "20",
+    pending: "26"
+  }
+  return <>
+  <Router>
+    <div style={{display : "grid",gridTemplateColumns : "16% 80%"}}>
+  <div>
+  <SideBar/>
+  
+
+  </div>
+
+  <div>
+  <Routes>
+    <Route path='/dashboard' element={<DashBoard data = {data}/>}/>
+    <Route path='/flex' element = {<Flex/>}/>
+    <Route path='/login' element = {<Login/>}/>
+    <Route path='/' element={<DashBoard data = {data}/>}/>
+
+
+  </Routes>
+  </div>
+  </div>
+  
+  </Router>
+  </>
 }
 
 export default App;
